@@ -1,0 +1,25 @@
+[
+  {
+    "as": "link",
+    "linkTitle": "Dashboard",
+    "imgsrc": "/assets/images/wallet-info.png",
+    "linkPath": "/dashboard",
+    "sidebar": "/dashboard",
+    "icon": "far fa-home-lg-alt",
+    "disable": false,
+    "externalRedirect": false
+  },
+  {
+    "as": "link",
+    "linkTitle": "Alerts",
+    "imgsrc": "/assets/images/master/buy-box-analytics.png",
+    "linkPath": "/alert-control",
+    "sidebar": "/dashboard",
+    "icon": "far fa-bell",
+    "disable": false,
+    "childNav": [
+      "/alert-control/create",
+      "/alert-control/edit"
+    ]
+  }
+]

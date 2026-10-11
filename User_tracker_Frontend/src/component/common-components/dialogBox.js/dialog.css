@@ -1,0 +1,148 @@
+.dialog {
+  z-index: 5000;
+}
+
+.popup__content {
+  margin-bottom: 1rem;
+}
+
+#markAllAsRead {
+  margin-left: 1rem;
+}
+.multi {
+  margin: 12px 6px 12px 50%;
+}
+
+.user_options1 {
+  position: absolute;
+  top: 107%;
+  right: 10.5rem;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  width: 30%;
+  background: #ffffff;
+  box-shadow: 7px 7px 29px rgba(0, 0, 0, 0.18);
+  border-radius: 7px;
+  height: 500%;
+}
+
+.list_col {
+  color: #a5acb8;
+}
+
+.dropdown_menu {
+  display: block;
+}
+
+.header {
+  border-bottom: none !important;
+}
+.head {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 5px 12px;
+  justify-content: space-between;
+  width: 100%;
+}
+.notifications {
+  display: flex;
+}
+.head h4 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1a1f36;
+  margin: 0 8px 0 0;
+}
+.notification head select {
+  border: none;
+  font-size: 12px;
+}
+
+.notifications_read {
+  display: flex;
+  align-items: flex-start;
+}
+.notifications_read label {
+  margin-bottom: 0;
+}
+
+.notifications_read input {
+  margin-left: 4px;
+  margin-top: 3px;
+}
+
+label {
+  font-size: 13px;
+  color: #424242;
+  font-weight: 500;
+}
+
+.list {
+  position: relative;
+  overflow: hidden;
+  width: auto;
+  height: 200px;
+}
+.list_menu_item + .list_menu_item {
+  border-top: 0.5px solid rgb(231, 214, 214);
+}
+
+.list_menu_item {
+  padding: 9px 15px 13px 13px;
+  overflow: auto;
+}
+
+.list_menu {
+  overflow: hidden;
+  width: 100%;
+  height: 200px;
+}
+.list_menu_wrap {
+  border-bottom: solid 1px #e4e8ee;
+  margin-bottom: 9px;
+  /* position: relative; */
+  display: block;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+  flex-direction: row;
+}
+
+.font {
+  font-weight: 600;
+}
+
+.list_menu_align {
+  border-bottom: 1px #424242;
+}
+.fontitem {
+  font-weight: 600;
+  border-bottom: 1 px #424242;
+}
+.avatar {
+  margin-right: 8px;
+}
+
+.list_menu_wrap .notification-name {
+  width: 32px;
+  height: 32px;
+  background: #f2f2f2;
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+  line-height: 32px;
+  margin-right: 12px;
+  position: absolute;
+  left: 10px;
+  font-weight: 600;
+  font-size: 16px;
+}
+.confActBtn:hover{
+  @apply bg-black;
+}
+.conCanBtn{
+  @apply px-4 py-2 bg-gray-200 rounded mr-2
+}
+.conCanBtn:hover{
+  @apply bg-black text-white;
+}

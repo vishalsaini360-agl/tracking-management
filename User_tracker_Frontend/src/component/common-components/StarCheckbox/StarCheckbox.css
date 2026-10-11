@@ -1,0 +1,60 @@
+/* StarCheckbox.css */
+.star-checkbox {
+  position: relative;
+  display: inline-block;
+}
+
+.star-checkbox input {
+  display: none;
+}
+
+.star-checkbox label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  margin-top: 5px;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  cursor: pointer;
+  background: gray;
+  color: transparent;
+  font-size: 10px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.star-checkbox input:checked + label {
+  background: yellow;
+  color: black; /* Color of the number */
+}
+.star-checkbox.disabled label {
+  background: #e0e0e0; /* Pale background when disabled */
+  border-color: #b0b0b0; /* Pale border when disabled */
+  cursor: not-allowed; /* Disabled cursor */
+}
+
+.star-checkbox label {
+  position: relative;
+}
+
+.star-checkbox label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px; /* Adjust font size as needed */
+  color: black; /* Color of the number */
+}

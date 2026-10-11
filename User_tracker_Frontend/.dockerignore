@@ -1,0 +1,43 @@
+# Node modules and dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build output (will be generated inside the container)
+dist
+build
+
+# Environment files
+.env
+#.env.local
+#.env.development
+#.env.production
+
+# Logs
+*.log
+logs
+*.out
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Git files
+.git
+.gitignore
+
+# Docker-related files (to avoid recursion)
+Dockerfile
+.dockerignore
+
+# Test and coverage directories
+coverage
+__tests__
+*.spec.ts
+*.test.ts
+
+# IDE/editor files
+.vscode
+.idea
+*.swp
+*.swo

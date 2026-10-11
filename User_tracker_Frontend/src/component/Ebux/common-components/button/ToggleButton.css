@@ -1,0 +1,45 @@
+/* .toggle-switch {
+  width: 45px;
+  height: 20px;
+  background-color: lightgray;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+} */
+
+/* .toggle-switch.active {
+  background-color: rgb(0, 129, 247);
+} */
+
+.toggle-switch-new.is-enabled{
+    background-color: rgb(0, 129, 247);
+}
+
+.toggle-switch-new{
+  /* margin: auto; */
+ width: 45px;
+  height: 20px;
+  background-color: lightgray;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.toggle-knob {
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.toggle-switch-new.is-enabled .toggle-knob {
+  transform: translateX(25px);
+  background-color: white;
+}

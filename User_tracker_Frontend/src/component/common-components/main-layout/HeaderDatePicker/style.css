@@ -1,0 +1,21 @@
+
+.scrollbarWrap {
+  @apply flex gap-1 overflow-auto flex-nowrap
+}
+.scrollbarWrap::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+.scrollbarWrap::-webkit-scrollbar-button {
+  background: transparent;
+  display: none;
+}
+
+.scrollbarWrap::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.scrollbarWrap::-webkit-scrollbar-track-piece {
+  background:transparent;
+}

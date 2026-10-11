@@ -1,0 +1,53 @@
+# ----------------------------------------------
+# 1️⃣ Build React App
+# ----------------------------------------------
+FROM --platform=linux/amd64 public.ecr.aws/docker/library/node:22.12-alpine AS build
+WORKDIR /app
+
+ARG REACT_APP_ENVIRONMENT
+ARG REACT_APP_Tracking_API_BASE_URL
+ARG REACT_APP_Tracking_API_ENDPOINT
+ARG REACT_APP_BASE_URL
+ARG REACT_APP_SOCKET_URL
+ARG REACT_APP_IDENTITY_MODULE_BASE_URL
+ARG REACT_APP_ONECOMMERCE_URL
+ARG REACT_APP_ONECOMMERCE_LOGIN_URL
+ARG REACT_APP_PROJECT_CONFIGURATION_BASE_URL
+ARG REACT_APP_MASTER_CMS_CONFIGURATION_BASE_URL
+
+ENV REACT_APP_ENVIRONMENT=$REACT_APP_ENVIRONMENT
+ENV REACT_APP_Tracking_API_BASE_URL=$REACT_APP_Tracking_API_BASE_URL
+ENV REACT_APP_Tracking_API_ENDPOINT=$REACT_APP_Tracking_API_ENDPOINT
+ENV REACT_APP_BASE_URL=$REACT_APP_BASE_URL
+ENV REACT_APP_SOCKET_URL=$REACT_APP_SOCKET_URL
+ENV REACT_APP_IDENTITY_MODULE_BASE_URL=$REACT_APP_IDENTITY_MODULE_BASE_URL
+ENV REACT_APP_ONECOMMERCE_URL=$REACT_APP_ONECOMMERCE_URL
+ENV REACT_APP_ONECOMMERCE_LOGIN_URL=$REACT_APP_ONECOMMERCE_LOGIN_URL
+ENV REACT_APP_PROJECT_CONFIGURATION_BASE_URL=$REACT_APP_PROJECT_CONFIGURATION_BASE_URL
+ENV REACT_APP_MASTER_CMS_CONFIGURATION_BASE_URL=$REACT_APP_MASTER_CMS_CONFIGURATION_BASE_URL
+
+
+COPY package*.json ./
+ENV GENERATE_SOURCEMAP=false
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+# RUN npm install --force
+RUN npm ci --legacy-peer-deps
+
+COPY . .
+
+RUN npm run build
+
+# ----------------------------------------------
+# 2️⃣ Serve via NGINX
+# ----------------------------------------------
+FROM --platform=linux/amd64 nginx:stable-alpine AS production
+
+# Copy NGINX config
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy React build files
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

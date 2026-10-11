@@ -1,0 +1,104 @@
+.duplicateKeyword {
+  color: rgb(255, 123, 0) !important;
+  font-weight: bold;
+}
+.newKeyword {
+  color: rgb(0, 255, 47);
+  font-weight: bold
+}
+.active-tab-underline {
+  @apply font-bold;
+  border-bottom: 2px solid blue;
+}
+.keyword__searchlist.added {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.keyword__addbtn.disabled {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.custom-dotted-border {
+  border-style: dotted;
+  border-width: 2px;
+}
+.tooltip-container {
+  @apply px-0 py-1;
+  position: relative;
+  display: inline-block;
+
+  cursor: pointer;
+}
+
+.tooltip-text {
+  @apply border  py-4 pl-20;
+  position: absolute;
+  bottom: 100%; 
+  z-index: 30;
+  transform: translateX(-50%);
+  background-color: #fff; 
+  color: #333; 
+  box-shadow: 7px 10px white;
+
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  transform-origin: center bottom;
+  visibility: hidden;
+}
+
+.tooltip-container:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+}
+.tooltip-close {
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 12px;
+  margin: 2px;
+  padding: 0;
+}
+
+.help-panel {
+  @apply rounded-lg;
+  position: fixed;
+  top: 67px;
+  right: 0;
+  width: 25%;
+  height: 60%;
+  background-color: white;
+  box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.help-panel .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.keyword__addbtn.added {
+  background-color: green;
+  color: white;
+}
+
+.keyword__searchlist.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+.addedNegativeKeywordsTable tr:nth-child(even) td {
+  @apply bg-gray-50  border-b border-gray-300 py-3;
+}
+.addedNegativeKeywordsTable tr:nth-child(odd) td {
+  @apply bg-gray-50 border-b border-gray-300 py-3;
+}

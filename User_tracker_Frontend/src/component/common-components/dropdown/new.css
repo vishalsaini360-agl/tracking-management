@@ -1,0 +1,104 @@
+
+.p-dropdown {
+    border-radius: 100px !important;
+    padding:0 auto !important;  
+    height: 20px !important;
+  }
+  
+  .p-dropdown-panel{
+    border-radius: 4px !important;
+    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06)) !important;
+  }
+  
+  
+  .p-dropdown .p-dropdown-trigger {
+    width: 8px  !important;
+    margin: 0 7px 0 2px !important;
+  }
+  
+  .p-dropdown .p-dropdown-label.p-placeholder {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  
+  .p-dropdown-panel .p-dropdown-items {
+    padding: 3px 0 !important;
+  }
+  
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    padding: 0.1rem 1rem !important;
+    font-size: 13px !important;
+    color: black !important;
+    font-weight: 400 !important;
+  }
+  
+  .p-dropdown-items>.p-dropdown-item:hover{
+    color: #ffffff !important;
+  }
+  
+  .p-inputtext {
+      font-size: 13px !important;
+      padding:0px 0 2px 1.2rem !important;
+      line-height: 1.25 !important;
+    }
+  
+    /* ----------dropdown button style */
+  
+  .p-dropdown.Active{
+    border: 1px solid #52C41A !important;
+    background-color: #f7fee7 !important;
+  }
+  
+  .p-dropdown.Paused{
+    border: 1px solid #D9D9D9 !important;
+    background-color: #FAFAFA !important;
+  }
+  
+  .p-dropdown.Archived{
+    border: 1px solid #0659e8 !important;
+    background-color: rgb(107, 157, 237) !important;
+  }
+  
+  .p-dropdown.Unknown{
+    border: 1px solid gray !important;
+    background-color: #dedad9 !important;
+  }
+  
+  .p-dropdown.Stopped{
+    border: 1px solid #FFA39E !important;
+    background-color: #FFF1F0 !important;
+  }
+  
+  .p-dropdown.Completed, .p-dropdown.Draf{
+    border: 1px solid #D9D9D9 !important;
+    background-color: #FAFAFA !important;
+  }
+  
+  /* ----------dropdown button text color */
+  
+  .p-dropdown.Active>.p-inputtext {
+    color: #52C41A !important;
+  }
+  
+  .p-dropdown.Paused>.p-inputtext {
+    color:#252525 !important;
+  }
+  
+  .p-dropdown.Archived>.p-inputtext {
+    color: black !important;
+  }
+  
+  .p-dropdown.Stopped>.p-inputtext {
+    color:#F5222D !important;
+  }
+  
+  .p-dropdown.Completed>.p-inputtext, .p-dropdown.Draft>.p-inputtext {
+    color:#252525 !important;
+  }
+  
+  .p-dropdown.Unknown>.p-inputtext {
+    color:black !important;
+  }
+  
+  
+  

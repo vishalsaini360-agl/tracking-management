@@ -1,0 +1,20 @@
+#filter-scrollbar::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+#filter-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #999999; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners */
+}
+
+#filter-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #7f7d7d; /* Darker thumb on hover */
+}
+
+#filter-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent !important; /* Track background */
+  border-radius: 10px;
+}
+
+/* ---------------- Scrollbar css, Do not touch ------------------------- */
+

@@ -1,0 +1,9 @@
+.custom-width {
+    width: calc(1530.4px - 400px) !important;
+  }
+
+  .custom-full-width {
+    width: calc(1530.4px - 318px) !important;
+  }
+ 
+ 

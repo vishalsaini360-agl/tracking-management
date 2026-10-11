@@ -1,0 +1,477 @@
+.topFilterSection {
+  width: 100%;
+  height: auto;
+  float: right;
+  background-color: #ffffff;
+  position: relative;
+}
+.selectedPageTitle {
+  display: inline-block;
+  position: relative;
+}
+.topFilterSection .selectedPageTitle .material-icons {
+  margin-right: 2px !important;
+}
+.topFilterSection .pageTitle {
+  font-weight: 500 !important;
+  display: flex !important;
+  margin-bottom: 0px !important;
+  padding: 9px 0px 9px 80px !important;
+  color: #003293 !important ;
+}
+.daterangepicker {
+  right: 60px !important;
+}
+.selectDate {
+  /* @apply rounded py-0 px-1 h-8 flex w-full justify-start items-center; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 5px;
+  height: 32px !important;
+  display: flex !important;
+  width: 100% !important;
+  justify-content: start;
+  align-items: center;
+  margin: 0 0 0 auto;
+}
+
+.customHeight {
+  /* @apply rounded py-0 px-1 h-8 flex w-full justify-start items-center; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 5px;
+  display: flex !important;
+  width: 100% !important;
+  justify-content: start;
+  align-items: center;
+  margin: 0 0 0 auto;
+}
+
+.selectCompDate {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 5px;
+  height: 32px !important;
+  display: flex !important;
+  width: 100% !important;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+}
+.selectCompDateRight {
+  @apply bg-["#0081F7"] text-black font-bold pt-1.5;
+}
+
+.selectDate h6 {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.selectDate h6 svg {
+  margin-right: 5px !important;
+}
+
+.selectDate:hover {
+  cursor: pointer;
+}
+.selectDate .material-icons {
+  margin-right: 1px !important;
+}
+
+.topFilterSection
+  .MuiPaper-root.MuiCard-root.MuiPaper-elevation1.MuiPaper-rounded {
+  position: absolute;
+  z-index: 999;
+  box-shadow: 10px 10px 300px 0px rgba(0, 0, 0, 0.75);
+}
+
+.calenderBtnContainer {
+  @apply py-4;
+  display: flex;
+  justify-content: end;
+  column-gap: 40px;
+  gap: 15px;
+  background-color: white;
+  border-top: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
+  padding-top: 0.5%;
+}
+.compCalenderBtnContainer {
+  @apply py-1.5 bg-gray-300;
+  display: flex;
+
+  border-top: 1px solid #ddd;
+}
+.ExportBtnContainer {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+.calDate {
+  padding-top: 0.5rem;
+  font-size: 12px;
+  padding-right: 8px;
+  margin-top: 10px;
+}
+.calBtnApply {
+  @apply bg-[#0081f7] text-white text-center inline-block font-normal mb-1 rounded mr-2 mt-2.5 px-3 py-1;
+}
+.calBtnApply:hover {
+  @apply bg-black;
+}
+.calBtnApply--ams {
+  @apply bg-[#EF880F];
+}
+.calBtnApply--blinkit {
+  @apply bg-[#11B07A];
+}
+.calBtnApply--insta {
+  @apply bg-[#851853];
+}
+
+.calBtnApply--zepto {
+  @apply bg-[#3C0068];
+}
+
+.calBtnDlt {
+  background: red;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  border: none;
+  text-shadow: none;
+  box-shadow: none;
+  margin-right: 8px;
+  margin-top: 10px;
+}
+.calBtnDlt:hover {
+  @apply bg-black;
+}
+.calenderOuter .calenderHide {
+  top: 110px;
+}
+.calBtnCancel {
+  background-color: #ebf4f8;
+  color: black;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  border: none;
+  text-shadow: none;
+  box-shadow: none;
+  margin-right: 8px;
+  margin-top: 10px;
+}
+.calBtnCancel:hover {
+  @apply bg-black text-white;
+}
+.calBtnCancel--ams {
+  @apply bg-gray-200 text-white;
+}
+.calBtnCancel--blinkit {
+  @apply bg-green-100;
+}
+.rdrNextPrevButton .rdrPprevButton {
+  @apply bg-red-300;
+}
+.ExportBtnCancel {
+  background-color: #ebf4f8;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.ExportBtnApply {
+  background: #0081f7;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.calClass .rdrInputRange .rdrInputRangeInput {
+  display: none;
+}
+.calClass .rdrInputRanges {
+  @apply cursor-pointer;
+}
+
+.calClass .rdrStaticRange {
+  border-bottom: none;
+}
+
+.calClass .rdrStaticRange:hover .rdrStaticRangeLabel,
+.rdrStaticRange:focus .rdrStaticRangeLabel {
+  @apply bg-flipkartPrimary text-white;
+}
+.calClass--ams .rdrStaticRange:hover .rdrStaticRangeLabel,
+.rdrStaticRange:focus .rdrStaticRangeLabel {
+  @apply bg-amsPrimary text-white;
+}
+.calClass--blinkit .rdrStaticRange:hover .rdrStaticRangeLabel,
+.rdrStaticRange:focus .rdrStaticRangeLabel {
+  @apply bg-blinkitPrimary text-white;
+}
+
+.calClass--zepto .rdrStaticRange:hover .rdrStaticRangeLabel,
+.rdrStaticRange:focus .rdrStaticRangeLabel {
+  @apply bg-zeptoPrimary text-white;
+}
+
+.calClass--instamart .rdrStaticRange:hover .rdrStaticRangeLabel,
+.rdrStaticRange:focus .rdrStaticRangeLabel {
+  @apply bg-instamartPrimary text-white;
+}
+
+
+.calClass .rdrStaticRange .rdrStaticRangeSelected {
+  @apply bg-amsPrimary
+}
+.calClass--ams .rdrDayToday .rdrDayNumber span:after {
+  @apply bg-amsPrimary
+}
+
+.calClass--ams .rdrStartEdge .rdrEndEdge {
+  @apply bg-amsPrimary;
+}
+
+.calClass--blinkit .rdrStaticRange .rdrStaticRangeSelected {
+  @apply bg-blinkitPrimary
+}
+.calClass--blinkit .rdrDayToday .rdrDayNumber span:after {
+  @apply bg-blinkitPrimary
+}
+
+.calClass--blinkit .rdrStartEdge .rdrEndEdge {
+  @apply bg-blinkitPrimary
+}
+
+.calClass--zepto .rdrStaticRange .rdrStaticRangeSelected {
+  @apply bg-zeptoPrimary
+}
+.calClass--zepto .rdrDayToday .rdrDayNumber span:after {
+  @apply bg-zeptoPrimary
+}
+
+.calClass--zepto .rdrStartEdge .rdrEndEdge {
+  @apply bg-zeptoPrimary
+}
+
+.calClass--instamart .rdrStaticRange .rdrStaticRangeSelected {
+  @apply bg-instamartPrimary
+}
+.calClass--instamart .rdrDayToday .rdrDayNumber span:after {
+  @apply bg-instamartPrimary
+}
+
+.calClass--instamart .rdrStartEdge .rdrEndEdge {
+  @apply bg-instamartPrimary
+}
+
+/* .rdrDayNumber--blinkit{
+  @apply bg-[#11B07A]
+} */
+
+.calClass .rdrInputRanges {
+  @apply py-1.5;
+}
+.calClass .rdrInputRanges:hover {
+  @apply bg-flipkartPrimary text-white;
+}
+.calClass--ams .rdrInputRanges:hover {
+  @apply bg-amsPrimary text-white;
+}
+.calClass--blinkit .rdrInputRanges:hover {
+  @apply bg-blinkitPrimary text-white;
+}
+
+.calClass--zepto .rdrInputRanges:hover {
+  @apply bg-zeptoPrimary text-white;
+}
+
+.calClass--instamart .rdrInputRanges:hover {
+  @apply bg-instamartPrimary text-white;
+}
+
+.calClass .rdrInputRange span {
+  cursor: pointer;
+}
+.calClass .rdrDefinedRangesWrapper {
+  width: 105px !important;
+}
+.rdrDateRangePickerWrapper {
+  margin-top: 2px;
+}
+/* .rdrStartEdge{
+  background-color: aqua;
+} */
+
+/* .rdrStartEdge,
+.rdrEndEdge {
+  background-color: orange;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+} */
+
+.calClass .rdrCalendarWrapper {
+  font-size: 10px !important;
+}
+
+.calenderOuter {
+  @apply top-8 absolute z-50;
+  /* box-shadow: 0px 1px 1px 0px #7a7a7a; */
+}
+.calenderOuterLeft {
+  @apply top-14 absolute z-50;
+  box-shadow: 0px 1px 1px 0px #7a7a7a;
+}
+.calenderHide .rdrCalendarWrapper {
+  display: none;
+}
+.calenderHide .calenderBtnContainer {
+  display: none;
+}
+
+.calClass .rdrMonthAndYearPickers {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.calClass .rdrMonthName {
+  font-weight: 600;
+  font-size: 12px;
+  color: #333333;
+}
+
+.selectDate {
+  background: #fff;
+  cursor: pointer;
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  font-weight: 400;
+  font-size: 13px;
+  height: 34px;
+  border-radius: 4px;
+  line-height: 1.42857143;
+  color: #333;
+}
+
+.calClass .rdrWeekDay {
+  font-weight: 600;
+  font-size: 12px;
+  color: #333333;
+}
+
+.calClass .rdrDayNumber span {
+  font-size: 12px;
+  color: #333333;
+}
+
+@media (max-width: 991px) {
+  .rdrDateRangePickerWrapper {
+    max-width: 100% !important;
+  }
+  .rdrDefinedRangesWrapper {
+    width: 40% !important;
+  }
+  .rdrCalendarWrapper {
+    width: 60% !important;
+  }
+  .topFilterSection
+    .MuiPaper-root.MuiCard-root.MuiPaper-elevation1.MuiPaper-rounded {
+    position: static;
+    margin: 10px !important;
+  }
+}
+.topFilterSection {
+  width: 70% !important;
+}
+.pickerHeading {
+  width: 30%;
+  align-self: center;
+}
+.pickerContainer {
+  flex-direction: row !important;
+  width: 91% !important;
+  margin: 10px auto;
+}
+@media (max-width: 768px) {
+  .topFilterSection {
+    width: 100% !important;
+  }
+  .pickerHeading {
+    width: 100%;
+    align-self: center;
+    padding: 0px;
+  }
+  .pickerContainer {
+    flex-direction: column !important;
+    width: 91% !important;
+    margin: 10px auto;
+    text-align: center;
+  }
+}
+.selCompblinkit {
+  @apply bg-[#11B07A];
+}
+
+.selCompAmazon {
+  @apply bg-[#EF880F];
+}
+.calBtnApply--blinkit {
+  @apply bg-[#11B07A];
+}
+.calBtnApply--amazon {
+  @apply bg-[#EF880F];
+}
+/* compare cal create btn*/
+.comparecal__createbtn {
+  @apply cursor-pointer px-3 py-2 rounded-lg;
+}
+.comparecal__createbtn:hover {
+  @apply bg-gray-300 text-white;
+}
+.comparecal__createbtn--active {
+  @apply bg-gray-200;
+}
+
+@media only screen and (max-width: 950px) {
+  .selectDate {
+    margin: 0 auto !important;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .selectDate {
+    max-width: 100%;
+  }
+
+  .selectDate h6 {
+    font-size: 14px;
+  }
+}
+
+.calBtnCancel--customreport {
+  background-color: #e3e3e3;
+  color: #5b5b5b;
+}

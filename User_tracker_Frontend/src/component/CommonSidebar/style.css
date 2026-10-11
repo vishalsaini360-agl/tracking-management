@@ -1,0 +1,23 @@
+.outerSidebar {
+    transition: width 0.3s ease-in-out; /* Transition only width */
+    width: 85px; /* Collapsed width */
+}
+
+  .outerSidebar.expanded {
+    width: 256px; /* Expanded width */
+    min-width: 256px;
+  }
+  
+  .textTransition {
+    transition: opacity 0 ease-in-out, width 0s ease-in-out; /* Apply transitions for text */
+    overflow: hidden; /* Prevent overflow issues */
+    opacity: 0;
+    width: 0;
+  }
+  
+  .outerSidebar.expanded .textTransition {
+    transition: opacity 0.8s ease-in-out, width 0.2s ease-in-out; /* Apply transitions for text */
+    opacity: 1; /* Show text when expanded */
+    width: 100%; /* Expand the width of the text */
+  }
+  

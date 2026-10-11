@@ -1,0 +1,41 @@
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 50%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.5s ease; /* Slide animation */
+  
+}
+
+.drawer.open {
+  right: 0; /* Slide in when open */
+}
+
+.drawer-content {
+  padding: 20px;
+}
+
+.drawer-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+}
+
+.drawer-title {
+  font-size: 20px;
+  font-weight: bolder;
+}
+.drawer-button {
+  position: fixed;
+  bottom: 0;
+  background: white;
+  padding-bottom: 6px;
+  width: 100%;
+}

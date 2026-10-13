@@ -1,5 +1,5 @@
-"use client"; // Add this line at the top
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { safeJsonParse } from '../utils/helpers';
 
 const ClientPermissionContext = createContext();
 
@@ -9,7 +9,7 @@ export const ClientPermissionProvider = ({ children }) => {
     useEffect(() => {
         const storedClientPermission = localStorage.getItem('clientPermission');
         if (storedClientPermission) {
-            setClientPermission(JSON.parse(storedClientPermission));
+            setClientPermission(safeJsonParse(storedClientPermission, []));
         }
     }, []);
 

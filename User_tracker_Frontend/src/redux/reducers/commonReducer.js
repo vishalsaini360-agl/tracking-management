@@ -1,9 +1,10 @@
 import ActionType from "../types";
+import { safeJsonParse } from "../../utils/helpers";
 
-let platform_type = JSON.parse(localStorage.getItem("platform_type"));
+let platform_type = safeJsonParse(localStorage.getItem("platform_type"), null);
 if (!platform_type) {
   localStorage.setItem("platform_type", JSON.stringify("/flipkart"));
-  platform_type = JSON.parse(localStorage.getItem("platform_type"));
+  platform_type = safeJsonParse(localStorage.getItem("platform_type"), "/flipkart");
 }
 
 const initialState = {

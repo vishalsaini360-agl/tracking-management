@@ -472,6 +472,7 @@ import {
   TRACKING_COMPONENT,
   trackCustomEvent,
 } from "../../../../../tracker";
+import { safeJsonParse } from "../../../../../utils/helpers";
 
 
 const DAY_MAP = {
@@ -880,7 +881,7 @@ export default function AlertControl() {
         Object.entries(alertControlObj.items || {}).filter((entries) => Array.isArray(entries[1]) && entries[1].length > 0)
       );
 
-      const activeClientProject = JSON.parse(localStorage.getItem("active_client_project") || "{}");
+      const activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
       const payload = {
         id: alertControlObj.id,
         name: alertControlObj.name,

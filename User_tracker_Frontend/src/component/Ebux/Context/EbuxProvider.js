@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useRef, useState 
 import moment from "moment/moment";
 import * as echarts from 'echarts';
 import { useMinMaxDateContext } from './MinMaxDateProvider';
+import { safeJsonParse } from '../../../utils/helpers';
 
 import {
   getEbuxClientCustomizeColumnsComprehensiveBreakdown,
@@ -587,7 +588,7 @@ export const EbuxProvider = (props) => {
   });
 
 
-  const [activeClientProject, setActiveClientProject] = useState(JSON.parse(localStorage.getItem("active_client_project")) || {});
+  const [activeClientProject, setActiveClientProject] = useState(safeJsonParse(localStorage.getItem("active_client_project"), {}));
   let isUseWidget = useMemo(() => {
     if (activeClientProject?.isUseWidget) {
       return true;
@@ -1029,7 +1030,7 @@ export const EbuxProvider = (props) => {
 
   const initFitersLoad = async (_kpi, kpiType = "pdp", firstTimeLoad = true) => {
     console.log('firstTimeLoadfirstTimeLoad', firstTimeLoad)
-    const _activeClientProject = JSON.parse(localStorage.getItem("active_client_project")) || {};
+    const _activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
     setActiveClientProject(_activeClientProject);
 
     const _enabledKPIs = _activeClientProject.kpi || {};
@@ -1286,7 +1287,7 @@ export const EbuxProvider = (props) => {
   const consecutive_out_of_stock_products_payload_ref = useRef("");
   const initFitersLoadWidget = async (_kpi, kpiType = "pdp", firstTimeLoad = true) => {
     // console.log('widget called')
-    const _activeClientProject = JSON.parse(localStorage.getItem("active_client_project")) || {};
+    const _activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
     setActiveClientProject(_activeClientProject);
 
     const _enabledKPIs = _activeClientProject.kpi || {};
@@ -2010,7 +2011,7 @@ export const EbuxProvider = (props) => {
   }
 
   const initFitersLoadDarkStore = async () => {
-    const _activeClientProject = JSON.parse(localStorage.getItem("active_client_project")) || {};
+    const _activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
     const use_range = [111].indexOf(activeClientProject?.client_project_id) > -1;
 
     setActiveClientProject(_activeClientProject);
@@ -2124,7 +2125,7 @@ export const EbuxProvider = (props) => {
 
   const getDistinctFiltersDarkStoreFn = async (key, keyFiltersData = [], msl = '') => {
     try {
-      const _activeClientProject = JSON.parse(localStorage.getItem("active_client_project")) || {};
+      const _activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
       setActiveClientProject(_activeClientProject);
       const use_range = [111].indexOf(activeClientProject?.client_project_id) > -1;
 
@@ -3713,7 +3714,7 @@ export const EbuxProvider = (props) => {
 
   const updateSelectedProductAndLocationofPlatformWidget = async (platform, platform_flag = false) => {
 
-    const _activeClientProject = JSON.parse(localStorage.getItem("active_client_project")) || {};
+    const _activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
     setActiveClientProject(_activeClientProject);
     // console.log('platformplatformplatformplatform', platform)
     const tagSkuList = selectedFiltersWidget.selectedTags?.flatMap(tag => tag?.tag_details?.map(d => d?.sku_or_keyword) ?? []) ?? [];
@@ -3924,7 +3925,7 @@ export const EbuxProvider = (props) => {
 
   }
   const handlePlatformTabClick = async (item) => {
-    const activeClientProject = JSON.parse(localStorage.getItem("active_client_project")) || {};
+    const activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
     let platform;
     if (selectedFilters.selectedPlatform.includes(item)) {
       platform = selectedFilters.selectedPlatform.filter((selectedItem) => selectedItem !== item);
@@ -3945,7 +3946,7 @@ export const EbuxProvider = (props) => {
     // console.log("clickedsasasassa", selectedFilters.selectedPlatform,filters.platform)
     // console.log("clickedsasasassa", selectedFilters.selectedPlatform)
     const activeClientProject =
-      JSON.parse(localStorage.getItem("active_client_project")) || {};
+      safeJsonParse(localStorage.getItem("active_client_project"), {});
     let platform;
     console.log('itemitemitemitemitem', item, isDoubleClick)
     if (isDoubleClick) {

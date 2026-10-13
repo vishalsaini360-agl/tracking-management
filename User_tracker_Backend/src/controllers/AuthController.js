@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const uuid = require("uuid");
 const constants = require("./../constants/constants");
-const psdb = require("../configs/postgres.config");
 const { All_Client_Project_List } = require("../configs/ds_all_customize_columns_comprehensive_breakdown.config");
 
 const filterProjectsByClients = (clientsList, projectsList, disableDarkstore) => {
@@ -166,27 +165,9 @@ class AuthController {
 
   async logoutForEgine(req, res) {
     try {
-      let user = await psdb[process.env.COMMON_DB].users_info.findOne({
-        where: { email: req.user.email, is_verified: 1, status: [0, 1] },
-      });
-
-      if (user === null) {
-        delete req.headers?.authorization;
-        return resLib.sendResponse(
-          constants.response_code.BAD_REQUEST,
-          "user not found",
-          {},
-          res,
-          {}
-        );
+      if (req.headers) {
+        delete req.headers.authorization;
       }
-
-      const validationKey = uuid.v4();
-
-      user.token_validation_key = validationKey;
-
-      await user.save();
-
       return sendResponse(
         constants.response_code.SUCCESS,
         "logout successfully",
@@ -234,26 +215,6 @@ class AuthController {
           {}
         );
       }
-
-      let user = await psdb[process.env.COMMON_DB].users_info.findOne({
-        where: { email: decodedToken.email, is_verified: 1, status: [0, 1] },
-      });
-
-      if (user === null) {
-        return resLib.sendResponse(
-          constants.response_code.SUCCESS,
-          "user not found",
-          {},
-          res,
-          {}
-        );
-      }
-
-      const validationKey = uuid.v4();
-
-      user.token_validation_key = validationKey;
-
-      await user.save();
 
       return sendResponse(
         constants.response_code.SUCCESS,

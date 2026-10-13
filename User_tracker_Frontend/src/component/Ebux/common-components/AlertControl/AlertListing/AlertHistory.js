@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { fetchPreviewData } from "../services/service";
 import Excel from "exceljs";
+import { safeJsonParse } from "../../../../../utils/helpers";
 import { calenderIcon } from "../../../../common-components/main-layout/HeaderDatePicker/utils/icons";
 import { DateRangeProvider, useDateRangeContext } from "../../../../common-components/main-layout/HeaderDatePicker/context/dateRangeProvider";
 import DateRangePicker from "../../../../common-components/main-layout/HeaderDatePicker/dateRangePicker";
@@ -79,7 +80,7 @@ export default function AlertHistory({ setFullHistory, historyData, alertData, f
     );
     setDownloading(true);
     try {
-      const activeClientProject = JSON.parse(localStorage.getItem("active_client_project") || "{}");
+      const activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
       const payload = {
         kpi: alertData.kpi,
         entity: alertData.entity,

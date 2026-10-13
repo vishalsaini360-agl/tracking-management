@@ -18,7 +18,7 @@ export const RestrictedRoute = ({
           return (
             <Redirect
               to={{
-                pathname: APPLICATION_ROUTES.DASHBOARD,
+                pathname: APPLICATION_ROUTES.COMMONSCREEN,
                 state: { from: props.location },
               }}
             />

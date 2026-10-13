@@ -1,4 +1,5 @@
 import ActionType from "../types";
+import { safeJsonParse } from "../../utils/helpers";
 
 // Define the initial state
 const initialState = {
@@ -26,38 +27,26 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         requestStatus: "loading",
       };
-    case ActionType.CHECK_IS_LOGGED_IN_SUCCESS:
+    case ActionType.CHECK_IS_LOGGED_IN_SUCCESS: {
+      const storedPlatforms = safeJsonParse(localStorage.getItem("platforms"), {});
+      const parsedPlatforms = Array.isArray(storedPlatforms?.platform)
+        ? storedPlatforms.platform
+        : Array.isArray(storedPlatforms)
+        ? storedPlatforms
+        : [];
+
       return {
         ...state,
         requestStatus: "succeeded",
         isLoggedIn: true,
-        // role: action.payload?.isLoggedIn ? action.payload.role : null,
-        // name: action.payload?.isLoggedIn ? action.payload.username : null,
-        // user_id: action.payload?.isLoggedIn ? action.payload.id : null,
-        role: localStorage.getItem("role"),
+        role: localStorage.getItem("role") || "admin",
         name: localStorage.getItem("name"),
         user_id: localStorage.getItem("user_id"),
-        // client_name: action.payload.isLoggedIn
-        //   ? action.payload.client_name
-        //   : null,
-        // client_id: action.payload.isLoggedIn ? action.payload.client_id : null,
         client_id: localStorage.getItem("client_id"),
-        // currency_format: action.payload.isLoggedIn
-        //   ? action.payload.currency_format
-        //   : null,
-        // currency_code: action.payload.isLoggedIn
-        //   ? action.payload.currency_code
-        //   : null,
-        // currency: action.payload.isLoggedIn ? action.payload.currency : null,
-        // platforms: action.payload?.isLoggedIn
-        //   ? action.payload.platformDetails
-        //   : [],
-
         currency: localStorage.getItem("currency"),
-        platforms: localStorage.getItem("platforms")
-          ? localStorage.getItem("platforms")
-          : [],
+        platforms: parsedPlatforms,
       };
+    }
     case ActionType.CHECK_IS_LOGGED_IN_FAILURE:
       return {
         ...state,

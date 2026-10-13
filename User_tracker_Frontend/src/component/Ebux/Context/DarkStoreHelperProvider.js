@@ -19,3 +19,5 @@ export const DarkStoreHelperProvider = ({ children }) => {
 export const useDarkStoreHelperContext = () => {
   return useContext(DarkStoreHelperContext);
 };
+
+export default DarkStoreHelperProvider;

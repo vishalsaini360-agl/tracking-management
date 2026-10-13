@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { createContext, useContext,   useEffect,   useState } from 'react';
-import { getAllSaveDateRanges } from '../services/saveDateRange.service';
+// import { getAllSaveDateRanges } from '../services/saveDateRange.service';
 
 const DateRangeContext = createContext();
 
@@ -24,7 +24,7 @@ export const DateRangeProvider = (props) => {
 
     const [savedDateRanges, setSavedDateRanges] = useState([]);
     const loadSavedDateRanges = async () => {
-        const all=await getAllSaveDateRanges();
+        const all=[];
         setSavedDateRanges(Array.isArray(all)?all:[]);
       }
       useEffect(() => {

@@ -19,7 +19,7 @@ export async function _GET2(url) {
       },
     });
     if (response.status === 401) {
-      // localStorage.removeItem("token");
+      localStorage.removeItem("token");
       localStorage.removeItem("id_token");
       localStorage.removeItem("access_token");
       localStorage.removeItem("token");
@@ -48,7 +48,7 @@ export async function _GET(url) {
 
     // if unverified token is provided, remove that token from the local storage
     if (response.status === 401 || response.status === 403) {
-      // localStorage.removeItem("token");
+      localStorage.removeItem("token");
       localStorage.removeItem("id_token");
       localStorage.removeItem("access_token");
       localStorage.removeItem("token");
@@ -79,7 +79,7 @@ export async function _GETWIthToken(url) {
 
     // if unverified token is provided, remove that token from the local storage
     if (response.status === 401) {
-      // localStorage.removeItem("token");
+      localStorage.removeItem("token");
       localStorage.removeItem("id_token");
       localStorage.removeItem("access_token");
       localStorage.removeItem("token");
@@ -124,7 +124,7 @@ export async function _POST(url, requestData, headers = {}) {
 
     // removeRequest(key);
     if (response.status === 401 || response.status === 403) {
-      // localStorage.removeItem("token");
+      localStorage.removeItem("token");
       localStorage.removeItem("id_token");
       localStorage.removeItem("access_token");
       localStorage.removeItem("token");
@@ -146,7 +146,7 @@ export async function _PATCH(url, requestData) {
   try {
     const response = await Axios.patch(url, requestData);
     if (response.status === 401) {
-      // localStorage.removeItem("token");
+      localStorage.removeItem("token");
       localStorage.removeItem("id_token");
       localStorage.removeItem("access_token");
       localStorage.removeItem("token");
@@ -165,7 +165,7 @@ export async function _PUT(url, requestData) {
   try {
     const response = await Axios.put(url, requestData);
     if (response.status === 401) {
-      // localStorage.removeItem("token");
+      localStorage.removeItem("token");
       localStorage.removeItem("id_token");
       localStorage.removeItem("access_token");
       localStorage.removeItem("token");
@@ -184,7 +184,7 @@ export async function _DELETE(url) {
   try {
     const response = await Axios.delete(url);
     if (response.status === 401) {
-      // localStorage.removeItem("token");
+      localStorage.removeItem("token");
       localStorage.removeItem("id_token");
       localStorage.removeItem("access_token");
       localStorage.removeItem("token");

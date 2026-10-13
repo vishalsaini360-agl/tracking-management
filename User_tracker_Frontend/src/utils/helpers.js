@@ -369,3 +369,34 @@ export function getCompDates(mainStartDate, mainEndDate, compareId) {
     }
   }
 }
+
+export const safeJsonParse = (value, fallback = {}) => {
+  if (
+    value === undefined ||
+    value === null ||
+    value === "" ||
+    value === "undefined" ||
+    value === "null"
+  ) {
+    return fallback;
+  }
+  if (typeof value !== "string") {
+    return value ?? fallback;
+  }
+  try {
+    const parsed = JSON.parse(value);
+    return parsed ?? fallback;
+  } catch (error) {
+    return fallback;
+  }
+};
+
+export const getSafeLocalStorageItem = (key, fallback = {}) => {
+  try {
+    if (typeof window === "undefined" || !window.localStorage) return fallback;
+    const item = localStorage.getItem(key);
+    return safeJsonParse(item, fallback);
+  } catch (e) {
+    return fallback;
+  }
+};

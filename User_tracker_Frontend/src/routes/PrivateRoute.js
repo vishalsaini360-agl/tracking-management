@@ -20,21 +20,21 @@ export const PrivateRoute = ({
   // eslint-disable-next-line no-console
   // console.log("etstsetestsetest")
   const dispatch = useDispatch();
-  const { role, requestStatus, platforms } = user_info;
-  // let role = 'admin'
-  const allowedPlatforms = _.map(platforms, 'platform_value');
-  const hasAccess = [...allowedPlatforms, 'dashboard'].includes(platform);
-  // console.log(">>>>>>>>>>>>>>>>>", user_info.requestStatus);
-  // const { role } = useSelector((state) => state);
+  const { role: reduxRole, requestStatus, platforms } = user_info;
   const token = localStorage.getItem("token");
+  const storedRole = localStorage.getItem("role");
+  const role = reduxRole || storedRole || "admin";
+
+  const allowedPlatforms = Array.isArray(platforms)
+    ? _.map(platforms, "platform_value")
+    : [];
+  const hasAccess = [...allowedPlatforms, "dashboard"].includes(platform);
 
   React.useEffect(() => {
     if (token) dispatch(checkIsLoggedIn());
-  }, [token]);
-  // let role = localStorage.getItem("role");
-  // role = role ? role.toLowerCase() : undefined;
-  // console.log("rest>>>>>>>>>>>>", role, rest.roles.includes(role));
-  if (["loading"].includes(requestStatus) && token)
+  }, [token, dispatch]);
+
+  if (["loading"].includes(requestStatus) && token && !storedRole && !reduxRole)
     return (
       <div className="w-full h-screen grid justify-items-stretch align-middle">
         <img
@@ -44,7 +44,6 @@ export const PrivateRoute = ({
         />
       </div>
     );
-  // if (requestStatus === "succeeded")
   else {
     return (
       <CommonSidebar>
@@ -54,16 +53,16 @@ export const PrivateRoute = ({
           <Route
             {...rest}
             render={(props) => {
-              if (!token || !role) {
+              if (!token) {
                 return (
                   <Redirect
                     to={{
-                      pathname: APPLICATION_ROUTES.DASHBOARD,
+                      pathname: APPLICATION_ROUTES.TOKEN_LOGIN,
                       state: { from: props.location },
                     }}
                   />
                 );
-              } else if (typeof blockForClient === 'function' ? blockForClient() : blockForClient) {
+              } else if (typeof blockForClient === "function" ? blockForClient() : blockForClient) {
                 return (
                   <Redirect
                     to={{
@@ -75,7 +74,8 @@ export const PrivateRoute = ({
               } else if (
                 (token &&
                   role &&
-                  !rest.roles.includes(role.toLowerCase()) &&
+                  rest.roles &&
+                  !rest.roles.map((r) => String(r).toLowerCase()).includes(role.toLowerCase()) &&
                   requestStatus === "succeeded") || !hasAccess
               ) {
                 // return <Redirect to="/unauthorized" />;

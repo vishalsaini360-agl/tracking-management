@@ -18,6 +18,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 //  } from "../../style/StyleConstants.js";
 // import { pushToDataLayerWithEvent } from "../../utils/helpers.js";
 import { getLocalSidebarMenu, setLocalSidebarMenu } from "./helpers.js";
+import { safeJsonParse } from "../../utils/helpers.js";
 // import CommonHeader from "./CommonHeader.js";
 import { useSelector } from "react-redux";
 import { useEbuxContext } from "../Ebux/Context/EbuxProvider.js";
@@ -258,7 +259,7 @@ function NestedSidebar() {
   const [menu, setMenu] = useState([]);
   const [openMenu, setOpenMenu] = useState(() => {
     const stored = getLocalSidebarMenu();
-    return stored ? JSON.parse(stored) : {};
+    return safeJsonParse(stored, {});
   });
   const [sidebarData, setSidebarData] = useState(
     availableRoutes.filter(
@@ -277,7 +278,7 @@ function NestedSidebar() {
   }
 
   const client_id = activeClientProject?.one_commerce_client_id;
-  const clientPermission = JSON.parse(localStorage.getItem("clientPermission") || "[]");
+  const clientPermission = safeJsonParse(localStorage.getItem("clientPermission"), []);
   const hasValidRole = clientPermission.some(
     client =>
       client.clientId == activeClientProject?.one_commerce_client_id &&
@@ -372,7 +373,7 @@ function NestedSidebar() {
     // Only reset openMenu if the role actually changes
     setOpenMenu(() => {
       const stored = getLocalSidebarMenu();
-      return stored ? JSON.parse(stored) : nestedMenuObj;
+      return safeJsonParse(stored, nestedMenuObj);
     });
     // console.log('filteredLeftNavLinkDatafilteredLeftNavLinkData', filteredLeftNavLinkData)
     setMenu(filteredLeftNavLinkData);

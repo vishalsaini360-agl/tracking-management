@@ -3,5 +3,5 @@ export const getLocalSidebarMenu = () => {
   };
   
   export const setLocalSidebarMenu = (menu) => {
-    localStorage.setItem("sidebarOpenMenu", JSON.stringify(menu));
+    localStorage.setItem("sidebarOpenMenu", JSON.stringify(menu || {}));
   };

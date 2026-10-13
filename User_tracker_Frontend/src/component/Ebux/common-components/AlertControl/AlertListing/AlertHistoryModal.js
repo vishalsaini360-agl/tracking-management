@@ -4,6 +4,7 @@ import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { fetchPreviewData } from "../services/service";
 import Excel from "exceljs";
 import { ENTITY_TYPE, EVENTS, trackCustomEvent, TRACKING_COMPONENT } from "../../../../../tracker";
+import { safeJsonParse } from "../../../../../utils/helpers";
 
 export default function AlertHistoryModal({ setCloseHistory, setFullHistory, historyData, alertData, loading, trackerContext = {} }) {
   // console.log("historyData", historyData);
@@ -36,7 +37,7 @@ export default function AlertHistoryModal({ setCloseHistory, setFullHistory, his
     );
     setDownloading(true);
     try {
-      const activeClientProject = JSON.parse(localStorage.getItem("active_client_project") || "{}");
+      const activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
       const payload = {
         kpi: alertData.kpi,
         entity: alertData.entity,

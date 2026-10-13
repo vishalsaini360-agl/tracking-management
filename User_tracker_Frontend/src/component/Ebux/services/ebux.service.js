@@ -3,6 +3,7 @@ import {
   // , _GETWIthToken
 } from "../../../services/axios.method";
 import { BASE_URL } from "../../../utils/url";
+import { safeJsonParse } from "../../../utils/helpers";
 
 export const getMinMaxDate = async () => {
   try {
@@ -778,7 +779,7 @@ export const getEbuxProductsDarkStore = async (pf_id = [], brand_id = [], brand_
 
 export const fetchKPIOverallDataDarkStore = async (kpi, filters, selectedFilters, selectedPlatform, isPrevious = false) => {
   try {
-    let getActiveClientProject = JSON.parse(localStorage.getItem("active_client_project")) || {};
+    let getActiveClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
     const payload = {
       filters: (getActiveClientProject?.isFilterDateWise ? { platform: filters?.platform } : filters), selectedFilters, selectedPlatform,
       isPrevious, kpi
@@ -810,7 +811,7 @@ export const fetchKPIOverallDataDarkStore = async (kpi, filters, selectedFilters
 
 export const fetchPlatformTabDataDarkStore = async (kpi, filters, selectedFilters, selectedPlatform, isPrevious = false) => {
   try {
-    let getActiveClientProject = JSON.parse(localStorage.getItem("active_client_project")) || {};
+    let getActiveClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
     const payload = {
       filters: (getActiveClientProject?.isFilterDateWise ? { platform: filters?.platform } : filters), selectedFilters, selectedPlatform,
       isPrevious

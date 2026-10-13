@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import moment from "moment";
 import { getMinMaxDate } from "../services/ebux.service";
+import { safeJsonParse } from "../../../utils/helpers";
 
 const optionsDate = [
   { label: "Last 7 days", value: '7' },
@@ -14,7 +15,6 @@ const getWeekFromDate = (targetDate) => {
   const today = moment().startOf('day');
   const targetM = moment(targetDate).startOf('day');
 
-  // const lastWeekMonday = targetM.clone().startOf("isoWeek").subtract(1, "week").startOf('day');
   let lastWeekMonday = targetM.clone().startOf("isoWeek").startOf('day');
   let lastWeekSunday = lastWeekMonday.clone().endOf("isoWeek").endOf('day');
   if (lastWeekSunday > today) {
@@ -31,7 +31,7 @@ const getWeekFromDate = (targetDate) => {
 
 export const MinMaxDateProvider = ({ children }) => {
   const [activeClientProject, setActiveClientProject] = useState(
-    JSON.parse(localStorage.getItem("active_client_project")) || {}
+    safeJsonParse(localStorage.getItem("active_client_project"), {})
   );
   const [loading, setLoading] = useState(true);
   const [isApiCalled, setIsApiCalled] = useState(false);
@@ -70,11 +70,10 @@ export const MinMaxDateProvider = ({ children }) => {
     selectedWeeks: initialSelectedWeeks,
   });
 
-  // Listen to changes in localStorage for active_client_project
   useEffect(() => {
     const checkLocalStorageProj = () => {
       try {
-        const storedProj = JSON.parse(localStorage.getItem("active_client_project")) || {};
+        const storedProj = safeJsonParse(localStorage.getItem("active_client_project"), {});
         if (storedProj?.client_project_id && storedProj?.client_project_id !== activeClientProject?.client_project_id) {
           setActiveClientProject(storedProj);
         }
@@ -96,7 +95,7 @@ export const MinMaxDateProvider = ({ children }) => {
   const fetchMinMaxDate = useCallback(async () => {
     try {
       setLoading(true);
-      const activeProj = JSON.parse(localStorage.getItem("active_client_project")) || {};
+      const activeProj = safeJsonParse(localStorage.getItem("active_client_project"), {});
       const currentProj = activeProj?.client_project_id ? activeProj : activeClientProject;
 
       if (!currentProj?.client_project_id) {
@@ -159,7 +158,7 @@ export const MinMaxDateProvider = ({ children }) => {
               ...(fetchedMin ? { minDate: fetchedMin } : {}),
               ...(fetchedMax ? { maxDate: fetchedMax } : {}),
             };
-            localStorage.setItem("active_client_project", JSON.stringify(updated));
+            localStorage.setItem("active_client_project", JSON.stringify(updated || {}));
             return updated;
           });
         }
@@ -176,7 +175,7 @@ export const MinMaxDateProvider = ({ children }) => {
     fetchMinMaxDate();
   }, [fetchMinMaxDate]);
 
-  const activeProjCheck = JSON.parse(localStorage.getItem("active_client_project")) || {};
+  const activeProjCheck = safeJsonParse(localStorage.getItem("active_client_project"), {});
   const hasClientProjectId = Boolean(activeProjCheck?.client_project_id || activeClientProject?.client_project_id);
 
   if (hasClientProjectId && (!isApiCalled || loading)) {
@@ -195,24 +194,15 @@ export const MinMaxDateProvider = ({ children }) => {
     <MinMaxDateContext.Provider
       value={{
         minDateCtx: minDate,
-        // setMinDateCtx: setMinDate,
         maxDateCtx: maxDate,
-        // setMaxDateCtx: setMaxDate,
         fetchMinMaxDateCtx: fetchMinMaxDate,
         max_dateCtx: dateState.max_date,
-        // lastDaysCtx: dateState.lastDays,
         endDateCtx: dateState.endDate,
         startDateCtx: dateState.startDate,
         previousEndDateCtx: dateState.previousEndDate,
         previousStartDateCtx: dateState.previousStartDate,
         lastActiveWeekCtx: dateState.lastActiveWeek,
         selectedWeeksCtx: dateState.selectedWeeks,
-        // optionsDateCtx: optionsDate,
-        // loadingCtx: loading,
-        // isApiCalledCtx: isApiCalled,
-        // activeClientProjectCtx: activeClientProject,
-        // setActiveClientProjectCtx: setActiveClientProject,
-
       }}
     >
       {children}

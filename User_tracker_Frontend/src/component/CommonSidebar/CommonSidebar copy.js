@@ -13,6 +13,7 @@ import {
 
 import { Link, useLocation } from "react-router-dom";
 import { useEbuxContext } from "../Ebux/Context/EbuxProvider.js";
+import { safeJsonParse } from "../../utils/helpers.js";
 
 
 const CommonSidebar = ({ children }) => {
@@ -237,7 +238,7 @@ const LocalSideLink = ({
   const { activeClientProject } = useEbuxContext();
   const location = useLocation(); // 👈 added hook
 
-  const clientPermission = JSON.parse(localStorage.getItem("clientPermission") || "[]");
+  const clientPermission = safeJsonParse(localStorage.getItem("clientPermission"), []);
 
   const hasValidRole = clientPermission.some( // this is for CMS appId 5
     client =>

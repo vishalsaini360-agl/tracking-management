@@ -1,8 +1,9 @@
 import { isLocalhost } from "./helpers";
 import { useActivityTracker } from "./useActivityTracker";
+import { safeJsonParse } from "../utils/helpers";
 
 const ActivityTrackerConsumer = () => {
-  const activeClientProject = JSON.parse(localStorage.getItem("active_client_project")) || {};
+  const activeClientProject = safeJsonParse(localStorage.getItem("active_client_project"), {});
   const dashboardId =
     activeClientProject?.client_project_id != null
       ? String(activeClientProject.client_project_id).slice(0, 128)

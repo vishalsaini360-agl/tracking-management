@@ -7,6 +7,7 @@ import { LOGIN_API_URL, APPLICATION_ROUTES } from "../../utils/constants";
 import { _GET, _POST } from "../../services/axios.method";
 import { useHistory } from "react-router-dom";
 import { postPlatormData } from "../../redux/action-creator/platformAction";
+import { checkIsLoggedIn } from "../../redux/action-creator/authCreator";
 import { useDispatch } from "react-redux";
 import { setUserProperty } from "../../analytics/EventController";
 const Login = () => {
@@ -117,23 +118,24 @@ const Login = () => {
         }
 
         if (token) {
-          localStorage.setItem("token", JSON.stringify(token));
-          localStorage.setItem("name", userDetails);
-          localStorage.setItem("currency", currency);
-          localStorage.setItem("currency_format", currency_format);
-          localStorage.setItem("client_id", client_id);
-          localStorage.setItem("client_name", client_name);
-          localStorage.setItem("user_id", user_id);
-          localStorage.setItem("email_id", email_id);
-          localStorage.setItem("client_projects", JSON.stringify(client_projects));
-          localStorage.setItem("active_client_project", JSON.stringify(active_client_project));
+          localStorage.setItem("token", token);
+          localStorage.setItem("name", userDetails || "");
+          localStorage.setItem("currency", currency || "");
+          localStorage.setItem("currency_format", currency_format || "");
+          localStorage.setItem("client_id", client_id || "");
+          localStorage.setItem("client_name", client_name || "");
+          localStorage.setItem("user_id", user_id || "");
+          localStorage.setItem("email_id", email_id || "");
+          localStorage.setItem("client_projects", JSON.stringify(client_projects || []));
+          localStorage.setItem("active_client_project", JSON.stringify(active_client_project || {}));
           localStorage.setItem(
             "platforms",
             JSON.stringify({ platform: platform })
           );
-          localStorage.setItem("role", role);
+          localStorage.setItem("role", role || "admin");
           setUserProperty(); //Firebase event to set client.
 
+          dispatch(checkIsLoggedIn());
           await authContext.onLogin(token, true, userDetails);
           history.push(APPLICATION_ROUTES.COMMONSCREEN);
         }

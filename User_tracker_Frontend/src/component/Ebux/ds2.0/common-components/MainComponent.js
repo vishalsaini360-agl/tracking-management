@@ -1,10 +1,10 @@
 import React from "react";
-import LogViewer from "./LogViewer";
+import TrackerDashboard from "./TrackerDashboard";
 
 function MainComponent() {
   return (
-    <div className="py-2">
-      <LogViewer />
+    <div className="w-full">
+      <TrackerDashboard />
     </div>
   );
 }

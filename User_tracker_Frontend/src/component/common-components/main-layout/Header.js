@@ -22,6 +22,9 @@ import { APPLICATION_ROUTES } from "../../../utils/constants";
 import { getCombineFilterWidget } from "../../Ebux/services/ebux.service";
 import axiosInstance from "../../../services/axios.service";
 import { ENTITY_TYPE, EVENTS, getTrackerContext, trackCustomEvent, TRACKING_COMPONENT } from "../../../tracker";
+import HeaderDatePicker from "./HeaderDatePicker";
+import { BsSliders2 } from "react-icons/bs";
+import { FiChevronRight, FiChevronDown } from "react-icons/fi";
 
 
 // export default ToastPortal;
@@ -224,124 +227,178 @@ const Header = () => {
 
   return (
     <>
-      <div className="header px-2 pl-6" id="header-custom">
+      <div
+        className="header px-4 sm:px-6 py-2.5 bg-white border-b border-gray-200 sticky top-0 right-0 w-full z-[100] flex flex-col xl:flex-row xl:items-center justify-between gap-3"
+        id="header-custom"
+      >
+        {/* Left: Breadcrumbs + Title + Subtitle matching screenshot */}
+        <div className="flex flex-col justify-center min-w-fit">
+          <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium mb-0.5">
+            <span className="hover:text-gray-700 cursor-pointer">Users</span>
+            <FiChevronRight className="w-3.5 h-3.5 text-gray-400" />
+            <span className="text-gray-700 font-semibold">User Activity</span>
+          </div>
 
-        {/* <img src={egenie} width={30} height={30} />
-        <div className="text-[22px] leading-[22px] text-[#333333]"> e-Genie Suite</div> */}
-        <div className="font-semibold text-lg leading-[22px] text-[#333333]"> Tracking Monitoring Management</div>
-        <div className="col ">
-          <div className=" header__rightMenu relative">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight leading-tight">
+            User Activity
+          </h1>
+          <p className="text-xs text-gray-500 mt-0.5">
+            Detailed activity for a specific user across PIM, Digital Shelf and Business Monitoring
+          </p>
+        </div>
 
-           
+        {/* Right: Date Range Picker + Filter Button + Project Dropdown matching screenshot */}
+        <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap justify-end">
+          {/* 1. Date Range Picker (HeaderDatePicker) */}
+          <div className="relative">
+            <HeaderDatePicker />
+          </div>
 
-            
-            
+          {/* 2. Filter Button (toggles right drawer) */}
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedHeaderOpen((prev) => ({
+                ...prev,
+                edit: !prev?.edit,
+                filterDrawer: !prev?.filterDrawer,
+              }));
+            }}
+            className="flex items-center gap-1.5 bg-white border border-gray-300 hover:border-gray-400 px-3.5 py-2 rounded-lg text-xs font-semibold text-gray-800 shadow-2xs hover:bg-gray-50 transition-all select-none cursor-pointer"
+            title="Open Filters Drawer"
+          >
+            <BsSliders2 className="w-3.5 h-3.5 text-gray-700" />
+            <span>Filter</span>
+          </button>
 
-                
-                <div className=" flex  z-100">
-                  <div ref={headerDropdown} className="relative">
-                    <div className="header__rightMenu--admin ">
-                      <div className="row items-start">
-                        <button
-                          className="header__rightMenu--image"
-                          onClick={() => {
-                            trackCustomEvent(!popup ? EVENTS.POPUP_OPEN : EVENTS.POPUP_CLOSE, { client_name: active_client_project?.client_project_name }, ENTITY_TYPE.CLIENT_DROPDOWN, getTrackerContext(kpi, filtersDarkStore?.tab_type, { component_type: TRACKING_COMPONENT.DROPDOWN }));
-                            setPopup(!popup);
-                          }}
-                        >
-                          <div className="flex gap-1 items-center">
-
-                            {active_client_project?.logo_url ?
-                              <img
-                                className="rounded-full w-[30px] h-[30px]"
-                                src={active_client_project?.logo_url}
-                                alt={active_client_project?.client_project_name}
-                              />
-                              : <></>}
-                            <h2 className="capitalize text-[18px] font-semibold">{active_client_project?.client_project_name ?? ""}</h2>
-
-
-
-                          </div>
-                          <img src="/assets/images/dropdownArrow.svg" className="w-4 h-4" alt="" />
-                        </button>
-                      </div>
+          {/* 3. Project Dropdown with Client selection & auth menu */}
+          <div className="flex z-100">
+            <div ref={headerDropdown} className="relative">
+              <div className="header__rightMenu--admin">
+                <div className="row items-start">
+                  <button
+                    type="button"
+                    className="flex flex-row items-center gap-2 bg-white border border-gray-300 hover:border-gray-400 rounded-lg py-2 px-3 justify-between text-xs font-semibold text-gray-900 shadow-2xs hover:bg-gray-50 cursor-pointer transition-colors"
+                    onClick={() => {
+                      trackCustomEvent(
+                        !popup ? EVENTS.POPUP_OPEN : EVENTS.POPUP_CLOSE,
+                        { client_name: active_client_project?.client_project_name },
+                        ENTITY_TYPE.CLIENT_DROPDOWN,
+                        getTrackerContext(kpi, filtersDarkStore?.tab_type, {
+                          component_type: TRACKING_COMPONENT.DROPDOWN,
+                        })
+                      );
+                      setPopup(!popup);
+                    }}
+                  >
+                    <div className="flex gap-1.5 items-center">
+                      {active_client_project?.logo_url ? (
+                        <img
+                          className="rounded-full w-5 h-5 object-contain"
+                          src={active_client_project?.logo_url}
+                          alt={active_client_project?.client_project_name}
+                        />
+                      ) : null}
+                      <span className="capitalize text-xs font-bold text-gray-900 whitespace-nowrap">
+                        {active_client_project?.client_project_name || "VIP Bags - Wt. SOS & Buy Box"}
+                      </span>
                     </div>
-                    {popup && (
-                      <ul className="user_options">
-                        <li
-                          className="user_options_content"
-                        >
-                          <button className="flex flex-row gap-1 bg-[#E0F0FF] w-full p-2.5 rounded items-center" onClick={() => {
-                            setOpenModal(!showOpenModal);
-                          }}>
-                            <img src="/assets/images/userImg.jpg" className="w-8 h-8 rounded-full border border-[#0081F7]" alt="" />
-                            <h2 className="capitalize">
-                              {localStorage.getItem("name")
-                                ? localStorage.getItem("name")
-                                : null}</h2>
-                          </button>
-                        </li>
-
-                        {client_projects && client_projects?.length ? client_projects?.map(
-                          (project, project_index) => (
-
-                            <li key={project_index} className="user_options_content" onClick={() => {
-                               handle_active_client_project_change(project);
-                            }}>
-                              <div className="user_list_content">
-                                {project?.logo_url ?
-                                  <img
-                                    className="rounded-full w-[30px] h-[30px]"
-                                    src={project?.logo_url}
-                                    alt={project?.client_project_name}
-                                  />
-                                  : <></>}
-                                <h2 className="capitalize text-[18px]">{project?.client_project_name}</h2>
-
-                              </div>
-                            </li>
-                          )
-                        ) : <></>}
-
-
-
-
-                        {showOpenModal && (
-                          <Popup
-                            title="Welcome"
-                            setShowPopup={setOpenModal}
-                            smallsize
-                            cutomButton={[
-                              {
-                                handleClick: () => setOpenModal(!showOpenModal),
-                                label: "OK",
-                                style: "",
-                              },
-                            ]}
-                          >
-                            <Profile />
-                          </Popup>
-                        )}
-
-                        <hr className="mt-2.5" />
-                        <li className="signout_content" onClick={logout}>
-                          <img src="/assets/images/logout.svg" className="w-4 h-4" alt="" />
-                          Sign out
-                        </li>
-                      </ul>
-                    )}
-                  </div>
+                    <FiChevronDown className="w-3.5 h-3.5 text-gray-600 ml-1" />
+                  </button>
                 </div>
-            
+              </div>
 
+              {popup && (
+                <ul className="user_options right-0">
+                  <li className="user_options_content">
+                    <button
+                      type="button"
+                      className="flex flex-row gap-1 bg-[#E0F0FF] w-full p-2.5 rounded items-center"
+                      onClick={() => {
+                        setOpenModal(!showOpenModal);
+                      }}
+                    >
+                      <img
+                        src="/assets/images/userImg.jpg"
+                        className="w-8 h-8 rounded-full border border-[#0081F7]"
+                        alt=""
+                      />
+                      <h2 className="capitalize font-semibold text-sm text-gray-800">
+                        {localStorage.getItem("name") ? localStorage.getItem("name") : "Admin User"}
+                      </h2>
+                    </button>
+                  </li>
+
+                  {client_projects && client_projects?.length ? (
+                    client_projects?.map((project, project_index) => (
+                      <li
+                        key={project_index}
+                        className="user_options_content cursor-pointer hover:bg-blue-50 px-3 py-2"
+                        onClick={() => {
+                          handle_active_client_project_change(project);
+                        }}
+                      >
+                        <div className="user_list_content flex items-center gap-2">
+                          {project?.logo_url ? (
+                            <img
+                              className="rounded-full w-6 h-6 object-contain"
+                              src={project?.logo_url}
+                              alt={project?.client_project_name}
+                            />
+                          ) : null}
+                          <span className="capitalize text-xs font-medium text-gray-700">
+                            {project?.client_project_name}
+                          </span>
+                        </div>
+                      </li>
+                    ))
+                  ) : (
+                    [
+                      "VIP Bags - Wt. SOS & Buy Box",
+                      "Nestle India - Digital Shelf",
+                      "Maruti Suzuki - Monitoring",
+                      "Abbott - Comprehensive",
+                    ].map((proj, idx) => (
+                      <li
+                        key={idx}
+                        className="user_options_content cursor-pointer hover:bg-blue-50 px-3 py-2 text-xs"
+                        onClick={() => {
+                          handle_active_client_project_change({ client_project_name: proj });
+                        }}
+                      >
+                        <span className="capitalize font-medium text-gray-700">{proj}</span>
+                      </li>
+                    ))
+                  )}
+
+                  {showOpenModal && (
+                    <Popup
+                      title="Welcome"
+                      setShowPopup={setOpenModal}
+                      smallsize
+                      cutomButton={[
+                        {
+                          handleClick: () => setOpenModal(!showOpenModal),
+                          label: "OK",
+                          style: "",
+                        },
+                      ]}
+                    >
+                      <Profile />
+                    </Popup>
+                  )}
+
+                  <hr className="mt-2.5" />
+                  <li className="signout_content" onClick={logout}>
+                    <img src="/assets/images/logout.svg" className="w-4 h-4" alt="" />
+                    Sign out
+                  </li>
+                </ul>
+              )}
+            </div>
           </div>
         </div>
-        
-
       </div>
-      
-      
     </>
   );
 };
